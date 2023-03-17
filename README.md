@@ -63,3 +63,8 @@ In **General Configuration** section there are all configurations available.
 After enabling & setting up all configurations, the maintenance page will looks like:
 
 ![preview](https://i.imgur.com/OgRGCuJ.png)
+
+## Feature Request and Bug Report
+If you want to include any feature or found any bugs, you can contact us at below email address.
+
+``hello@devcrew.io``
