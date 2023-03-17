@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Devcrew Team
+ * @copyright Copyright (c) 2023 Devcrew {http://devcrew.io}
+ * Date: 17/01/2023
+ * Time: 2:22 PM
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <maintenancepage>
+            <general>
+                <enable>0</enable>
+            </general>
+        </maintenancepage>
+    </default>
+</config>

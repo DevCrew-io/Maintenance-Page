@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Devcrew Team
+ * @copyright Copyright (c) 2023 Devcrew {http://devcrew.io}
+ * Date: 17/01/2023
+ * Time: 2:11 PM
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="controller_action_predispatch">
+        <observer name="check_maintenance_page_observer"
+                  instance="Devcrew\MaintenancePage\Observer\CheckMaintenanceModeObserver"/>
+    </event>
+    <event name="controller_front_send_response_before">
+        <observer name="devcrew_maintenace_remove_header" instance="Devcrew\MaintenancePage\Observer\RemoveHeader"/>
+    </event>
+</config>

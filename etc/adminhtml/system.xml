@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Devcrew Team
+ * @copyright Copyright (c) 2023 Devcrew {http://devcrew.io}
+ * Date: 17/01/2023
+ * Time: 2:01 PM
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="devcrew" translate="label" sortOrder="10">
+            <label>DevCrew</label>
+        </tab>
+        <section id="maintenancepage" translate="label" sortOrder="130" showInDefault="1" showInWebsite="0"
+                 showInStore="0">
+            <class>separator-top</class>
+            <label>Maintenance Page</label>
+            <tab>devcrew</tab>
+            <resource>Devcrew_MaintenancePage::maintenancepage_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0"
+                   showInStore="0">
+                <label>General Configuration</label>
+                <field id="devcrew_maintenance_notice" translate="label" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label><![CDATA[<p style="color: #FF0000;">Note: Preset configurations will be shown on front-end if no configuration value is set</p>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+                <field id="enable" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="0"
+                       showInStore="0">
+                    <label>Enable Maintenance Page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="background_image" translate="label comment" type="Magento\Config\Block\System\Config\Form\Field\Image"
+                       sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Background Image</label>
+                    <comment>Resolution: 1850 x 1200</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system" scope_info="1">devcrew/maintenancepage</upload_dir>
+                    <base_url type="media" scope_info="1">devcrew/maintenancepage</base_url>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="whitelist_ip" translate="label comment" type="textarea" sortOrder="40" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>WhiteList IP's</label>
+                    <comment>Separated by comma(s).</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="description" translate="label comment" type="editor" sortOrder="50" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>Description</label>
+                    <frontend_model>Devcrew\MaintenancePage\Block\Editor</frontend_model>
+                    <comment>Add Logo,Title,Description</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="timer" translate="label" type="select" sortOrder="60" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>Add Timer</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="end_date" translate="label" type="date" sortOrder="70" showInDefault="1" showInWebsite="0"
+                       showInStore="0">
+                    <label>Expected Up Date/Time</label>
+                    <frontend_model>Devcrew\MaintenancePage\Block\DatePicker</frontend_model>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="timer">1</field>
+                    </depends>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="social_button" translate="label" type="select" sortOrder="80" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>Add Social Icon</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="facebook" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="0"
+                       showInStore="0">
+                    <label>Facebook</label>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="social_button">1</field>
+                    </depends>
+                </field>
+                <field id="linkedin" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="0"
+                       showInStore="0">
+                    <label>Linkedin</label>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="social_button">1</field>
+                    </depends>
+                </field>
+                <field id="youtube" translate="label" type="text" sortOrder="110" showInDefault="1" showInWebsite="0"
+                       showInStore="0">
+                    <label>Youtube</label>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="social_button">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

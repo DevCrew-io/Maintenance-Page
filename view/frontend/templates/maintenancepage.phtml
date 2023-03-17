@@ -1,0 +1,121 @@
+<?php
+/**
+ * @author Devcrew Team
+ * @copyright Copyright (c) 2023 Devcrew {http://devcrew.io}
+ * Date: 17/01/2023
+ * Time: 4:22 PM
+ */
+use Devcrew\MaintenancePage\Block\Maintenance;
+
+/** @var Maintenance $block */
+
+$backgroundImage = $block->getBackgroundimage();
+$description = $block->getDescription();
+$endTime = $block->getEndtime();
+$facebookLink = $block->getFacebookLink();
+$linkedinLink = $block->getLinkedinLink();
+$youtubeLink = $block->getYoutubeLink();
+if (!$backgroundImage && !$description && !$endTime && !$facebookLink && !$linkedinLink && !$youtubeLink) {
+    $backgroundImage = $block->getViewFileUrl('Devcrew_MaintenancePage::images/devcrew-maintenance-page.png');
+    $description = 'Sorry we are down for maintenance. We will back soon!';
+    $endTime = date('Y-m-d H:i:s');
+}
+$style = $backgroundImage ?
+    "background: url('" . $block->escapeUrl($backgroundImage) . "') no-repeat center center fixed;" : '';
+?>
+<div class="container-custom"
+     style="<?= /** @noEscape */ $style; ?>">
+     <?php if ($description || $endTime || $facebookLink || $linkedinLink || $youtubeLink): ?>
+    <div class="container-fluid-custom">
+        <div class="align-items-center">
+            <?php if ($description): ?>
+                <div class="col">
+                    <div class="description"><?= /** @noEscape */ $description ?></div>
+                </div>
+            <?php endif; ?>
+            <?php if ($endTime): ?>
+                <div class="col">
+                    <div class="flex-row timer">
+                        <div id="days" class ="sec"></div>
+                        <div id="hours" class ="sec"></div>
+                        <div id="minutes" class ="sec"></div>
+                        <div id="seconds" class ="sec"></div>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php if ($block->getSocialButton()): ?>
+                <div class="flex-row social_link">
+                    <?php if ($facebookLink): ?>
+                        <div class="social">
+                            <a href="<?= $block->escapeUrl($facebookLink) ?>"
+                               class="fa fa-facebook"></a>
+                        </div>
+                    <?php endif; ?>
+                    <?php if ($linkedinLink): ?>
+                        <div class="social">
+                            <a href="<?= $block->escapeUrl($linkedinLink) ?>"
+                               class="fa fa-linkedin"></a>
+                        </div>
+                    <?php endif; ?>
+                    <?php if ($youtubeLink): ?>
+                        <div class="social">
+                            <a href="<?= $block->escapeUrl($youtubeLink) ?>"
+                               class="fa fa-youtube"></a>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+     <?php endif; ?>
+</div>
+
+<?php if ($endTime): ?>
+    <script>
+        var doc = document;
+
+        function makeTimer() {
+            let endTime = "<?= $block->escapeHtml($endTime) ?>";
+            endTime = (Date.parse(endTime) / 1000);
+
+            let now = new Date();
+            now = (Date.parse(now) / 1000);
+
+            let timeLeft = endTime - now;
+
+            let days = Math.floor(timeLeft / 86400);
+            let hours = Math.floor((timeLeft - (days * 86400)) / 3600);
+            let minutes = Math.floor((timeLeft - (days * 86400) - (hours * 3600 )) / 60);
+            let seconds = Math.floor((timeLeft - (days * 86400) - (hours * 3600) - (minutes * 60)));
+
+            if (hours < "10") { hours = "0" + hours; }
+            if (minutes < "10") { minutes = "0" + minutes; }
+            if (seconds < "10") { seconds = "0" + seconds; }
+            if (days < 0) {
+                days = 0;
+                hours = minutes = seconds = '00';
+            }
+
+            doc.getElementById('days').innerHTML=days + "<span>Days</span>";
+            doc.getElementById('hours').innerHTML=hours + "<span>Hours</span>";
+            doc.getElementById('minutes').innerHTML=minutes + "<span>Minutes</span>";
+            doc.getElementById('seconds').innerHTML=seconds + "<span>Seconds</span>";
+        }
+
+        function appendCss(css) {
+            let link  = document.createElement('link');
+            link.rel  = 'stylesheet';
+            link.type = 'text/css';
+            link.href = css;
+            link.media = 'all';
+            head.appendChild(link);
+        }
+
+        let custom_css = "<?= $block->escapeUrl($block->getViewFileUrl('Devcrew_MaintenancePage::css/custom.css')) ?>";
+        let fonts_awesome = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
+        let head  = document.getElementsByTagName('head')[0];
+        appendCss(custom_css);
+        appendCss(fonts_awesome);
+        setInterval(function() { makeTimer(); }, 1000);
+    </script>
+<?php endif; ?>

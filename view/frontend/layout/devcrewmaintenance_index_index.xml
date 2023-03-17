@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Devcrew Team
+ * @copyright Copyright (c) 2023 Devcrew {http://devcrew.io}
+ * Date: 17/01/2023
+ * Time: 4:14 PM
+ */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="empty"/>
+    <body>
+        <referenceContainer name="page.wrapper">
+            <block class="Devcrew\MaintenancePage\Block\Maintenance" name="maintenancepage"
+                   template="Devcrew_MaintenancePage::maintenancepage.phtml" cacheable="false"/>
+        </referenceContainer>
+    </body>
+</page>
