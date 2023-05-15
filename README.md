@@ -65,6 +65,4 @@ After enabling & setting up all configurations, the maintenance page will looks 
 ![preview](https://i.imgur.com/OgRGCuJ.png)
 
 ## Feature Request and Bug Report
-If you want to include any feature or found any bugs, you can contact us at below email address.
-
-``hello@devcrew.io``
+If you want to include any feature or found any bugs, you can contact us at [hello@devcrew.io](mailto:hello@devcrew.io)
